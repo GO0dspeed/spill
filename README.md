@@ -4,13 +4,31 @@ Utility to quickly scan over a signle IP / CIDR to search for OpenPrinting CVE 2
 
 This utility is quick and ugly - but could be useful to some people.
 
+Exploit has been left out purposefully as this is more designed to scan and provide awareness to users.
+
 ## Build Project
 
 ```
 go build .
 ```
 
-## Quick usage (single IP)
+## Usage
+
+```
+Usage of ./spill:
+  -cidr string
+    	CIDR block for network scanning
+  -dest string
+    	Destination IP address
+  -destport string
+    	Destination UDP port (default "12345")
+  -ip string
+    	Target IP address
+  -port string
+    	Target UDP port (default "631")
+```
+
+## Example (single IP)
 
 ```
 go run main.go -ip <target-ip> -port 631 -dest <your listening ip> -destport <your listening port>
@@ -18,7 +36,7 @@ OR
 ./spill -ip <target-ip> -port 631 -dest <your listening ip> -destport <your listening port>
 ```
 
-## Quick usage (CIDR)
+## Example (CIDR)
 
 ```
 go run main.go -cidr <target-range> -port 631 -dest <your listening ip> -destport <your listening port>
