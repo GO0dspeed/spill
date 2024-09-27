@@ -1,11 +1,13 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"log"
 	"net"
 	"net/http"
+	"os"
 	"strconv"
 	"sync"
 )
@@ -106,14 +108,43 @@ func startHTTPServer(dport string) {
 	}
 }
 
+func printBanner() {
+	text := `
+	  . .
+	  .. . *.
+- -_ _-__-0oOo
+ _-_ -__ -||||)
+    ______||||______
+~~~~~~~~~~^""' Spill
+`
+	fmt.Println(text)
+}
+
 func main() {
 	// Command-line arguments
 	ipPtr := flag.String("ip", "", "Target IP address")
-	portPtr := flag.String("port", "0", "Target UDP port")
+	portPtr := flag.String("port", "631", "Target UDP port")
 	destPtr := flag.String("dest", "", "Destination IP address")
-	destPortPtr := flag.String("destport", "0", "Destination UDP port")
+	destPortPtr := flag.String("destport", "12345", "Destination UDP port")
 	cidrPtr := flag.String("cidr", "", "CIDR block for network scanning")
 	flag.Parse()
+
+	// Print Banner
+	printBanner()
+
+	// Validate Arguments
+
+	if *ipPtr == "" {
+		noIpError := errors.New("no target ip address specified:\nUsage: ")
+		fmt.Println(noIpError.Error())
+		flag.PrintDefaults()
+		os.Exit(1)
+	} else if *destPtr == "" {
+		noDestError := errors.New("no listening ip address specified:\nUsage: ")
+		fmt.Println(noDestError.Error())
+		flag.PrintDefaults()
+		os.Exit(1)
+	}
 
 	// Run HTTP server in a separate goroutine
 	go startHTTPServer(*destPortPtr)
