@@ -48,12 +48,17 @@ OR
 
 ```zsh
 ┌──(kali㉿kali-raspberry-pi)-[~/spill]
-└─$ ./spill -ip 192.168.50.174 -port 631 -dest 192.168.50.175 -destport 12345
-2024/09/27 03:28:12 Starting HTTP server on port 12345...
-2024/09/27 03:28:12 Received POST request: 192.168.50.174:55580
-2024/09/27 03:28:12 Received POST request: 192.168.50.174:55592
-2024/09/27 03:28:12 Received POST request: 192.168.50.174:55614
-2024/09/27 03:28:13 Received POST request: 192.168.50.174:55620
-2024/09/27 03:28:13 Received POST request: 192.168.50.174:55636
-2024/09/27 03:28:13 Received POST request: 192.168.50.174:55662
+└─$ ./spill -cidr 10.1.80.0/24 -dest 10.110.123.74 -destport 9003
+
+	  . .
+	  .. . *.
+- -_ _-__-0oOo
+ _-_ -__ -||||)
+    ______||||______
+~~~~~~~~~~^""' Spill
+
+2024/09/27 13:55:37 Starting HTTP server on port 9003...
+Packet Progress 100% |████████████████████████████████████████|
+2024/09/27 13:55:37 Received POST request: 10.1.80.89:56952
+2024/09/27 13:55:37 Received POST request: 10.1.80.85:37606
 ```
