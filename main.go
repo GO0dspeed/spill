@@ -134,7 +134,7 @@ func main() {
 
 	// Validate Arguments
 
-	if *ipPtr == "" {
+	if *ipPtr == "" && *cidrPtr == "" {
 		noIpError := errors.New("no target ip address specified:\nUsage: ")
 		fmt.Println(noIpError.Error())
 		flag.PrintDefaults()
