@@ -10,6 +10,9 @@ import (
 	"os"
 	"strconv"
 	"sync"
+
+	//external packages
+	"github.com/schollz/progressbar/v3"
 )
 
 // Packet represents the UDP packet information
@@ -72,6 +75,7 @@ func sendPacket(packet Packet, wg *sync.WaitGroup) {
 // Function to batch packets and send them concurrently using goroutines
 func sendPacketsInBatches(packets []Packet, batchSize int) {
 	var wg sync.WaitGroup
+	bar := progressbar.NewOptions(len(packets), progressbar.OptionSetDescription("Packet Progress"), progressbar.OptionSetElapsedTime(true))
 
 	// Send in batches
 	for i := 0; i < len(packets); i += batchSize {
@@ -87,7 +91,9 @@ func sendPacketsInBatches(packets []Packet, batchSize int) {
 			go sendPacket(packet, &wg)
 		}
 		wg.Wait()
+		bar.Add(len(batch))
 	}
+	fmt.Println("")
 }
 
 // HTTP server to log incoming POST requests
@@ -102,7 +108,6 @@ func startHTTPServer(dport string) {
 	})
 
 	// Start the HTTP server
-	log.Printf("Starting HTTP server on port %s...", dport)
 	if err := http.ListenAndServe(fmt.Sprintf(":%s", dport), nil); err != nil {
 		log.Fatalf("HTTP server error: %v\n", err)
 	}
@@ -147,6 +152,7 @@ func main() {
 	}
 
 	// Run HTTP server in a separate goroutine
+	log.Printf("Starting HTTP server on port %s...", *destPortPtr)
 	go startHTTPServer(*destPortPtr)
 
 	// CIDR Handling
