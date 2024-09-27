@@ -25,3 +25,17 @@ go run main.go -cidr <target-range> -port 631 -dest <your listening ip> -destpor
 OR
 ./spill -cidr <target-range> -port 631 -dest <your listening ip> -destport <your listening port>
 ```
+
+## Example Output
+
+```zsh
+┌──(kali㉿kali-raspberry-pi)-[~/spill]
+└─$ ./spill -ip 192.168.50.174 -port 631 -dest 192.168.50.175 -destport 12345
+2024/09/27 03:28:12 Starting HTTP server on port 12345...
+2024/09/27 03:28:12 Received POST request: 192.168.50.174:55580
+2024/09/27 03:28:12 Received POST request: 192.168.50.174:55592
+2024/09/27 03:28:12 Received POST request: 192.168.50.174:55614
+2024/09/27 03:28:13 Received POST request: 192.168.50.174:55620
+2024/09/27 03:28:13 Received POST request: 192.168.50.174:55636
+2024/09/27 03:28:13 Received POST request: 192.168.50.174:55662
+```
