@@ -15,17 +15,15 @@ go build .
 ## Usage
 
 ```
-Usage of ./spill:
-  -cidr string
-    	CIDR block for network scanning
+Usage:
   -dest string
-    	Destination IP address
+    	IP address for callbacks
   -destport string
-    	Destination UDP port (default "12345")
-  -ip string
-    	Target IP address
+    	TCP port to listen on for HTTP callbacks (default "12345")
   -port string
     	Target UDP port (default "631")
+  -target string
+    	Target IP address, CIDR network, or filename to scan
 ```
 
 ## Example (single IP)
