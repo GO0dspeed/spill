@@ -39,16 +39,25 @@ OR
 ## Example (CIDR)
 
 ```
-go run main.go -cidr <target-range> -port 631 -dest <your listening ip> -destport <your listening port>
+go run main.go -target <target-range> -port 631 -dest <your listening ip> -destport <your listening port>
 OR
-./spill -cidr <target-range> -port 631 -dest <your listening ip> -destport <your listening port>
+./spill -target <target-range> -port 631 -dest <your listening ip> -destport <your listening port>
+```
+
+## Example (file with CIDR networks)
+
+```
+go run main.go -target <path/to/target/file> -port 631 -dest <your listening ip> -destport <your listening port>
+OR
+./spill -target <path/to/target/file> -port 631 -dest <your listening ip> -destport <your listening port>
+
 ```
 
 ## Example Output
 
 ```zsh
 ┌──(kali㉿kali-raspberry-pi)-[~/spill]
-└─$ ./spill -cidr 10.1.80.0/24 -dest 10.110.123.74 -destport 9003
+└─$ ./spill -target 10.1.80.0/24 -dest 10.110.123.74 -destport 9003
 
 	  . .
 	  .. . *.
