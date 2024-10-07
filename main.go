@@ -168,7 +168,7 @@ func handleIPP(w http.ResponseWriter, r *http.Request) {
 	requestID := binary.BigEndian.Uint32(body[4:8])
 
 	// Log the request details
-	log.Printf("Received IPP request with request ID: %d, version: %d.%d\n", requestID, versionMajor, versionMinor)
+	log.Printf("Received IPP request with request ID: %d, version: %d.%d from %s\n", requestID, versionMajor, versionMinor, clientIP)
 
 	// Construct IPP response with minimal printer attributes
 	var response bytes.Buffer
